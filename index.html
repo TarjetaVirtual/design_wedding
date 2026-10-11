@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Digital de Boda</title>
+    <!-- Tipografías de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Alex+Brush&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            font-family: 'Cinzel', serif;
+            background-color: #f5efe6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- PANTALLA INICIAL: SOBRE.PNG --- */
+        #envelope-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('Sobre\ de\ invitación\ nude\ con\ sello\ botánico.png') no-repeat center center;
+            background-size: cover;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 50px;
+            cursor: pointer;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #envelope-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .tap-hint {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: #6b5847;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        #main-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #main-content.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* --- SECCIÓN 1: PORTADA PRINCIPAL (FONDO.PNG) --- */
+        .section-cover {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            background: url('t.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .text-top {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 5px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .text-middle {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4.5rem;
+            color: #a36d41;
+            margin: -10px 0;
+        }
+
+        .text-bottom {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 5px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .divider-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70%;
+            margin: 35px 0 25px 0;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background-color: #d4b896;
+        }
+
+        .heart-icon {
+            color: #b8860b;
+            font-size: 0.9rem;
+            margin: 0 12px;
+        }
+
+        .footer-text {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 3px;
+            color: #333333;
+            text-transform: uppercase;
+            line-height: 1.8;
+        }
+
+        /* --- SECCIÓN 2: PAREJA (FOTO3.PNG) --- */
+        .section-couple {
+            width: 100%;
+            max-width: 430px;
+            height: 100vh;
+            min-height: 680px;
+            position: relative;
+            background: url('images.jpg') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .couple-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 40px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .name-first, .name-second {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .and-text {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.8rem;
+            color: #f1e4d8;
+            margin: -5px 0;
+            font-weight: normal;
+        }
+
+        .heart-white {
+            color: #ffffff;
+            font-size: 0.85rem;
+            margin: 15px 0 10px 0;
+        }
+
+        .together-text {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.3rem;
+            color: #ffffff;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        /* --- SECCIÓN 3: FECHA Y UBICACIÓN (FONDO.PNG) --- */
+        .section-details {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            background: url('Tarjeta\ botánica\ minimalista\ en\ marfil.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .join-us {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 3px;
+            color: #333333;
+            text-transform: uppercase;
+            line-height: 1.6;
+        }
+
+        .forever-text {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4.8rem;
+            color: #a36d41;
+            margin: -10px 0 10px 0;
+        }
+
+        .small-divider {
+            width: 80%;
+            height: 1px;
+            background-color: #d4b896;
+            margin: 15px 0;
+        }
+
+        .day-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            color: #333333;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .month-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            color: #333333;
+            text-transform: uppercase;
+        }
+
+        .date-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .time-text {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: #333333;
+            text-transform: uppercase;
+            border-top: 1px solid #d4b896;
+            border-bottom: 1px solid #d4b896;
+            padding: 6px 0;
+        }
+
+        .day-number {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            font-weight: 500;
+            color: #a36d41;
+            line-height: 1;
+        }
+
+        .year-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+            color: #333333;
+            margin-bottom: 25px;
+        }
+
+        .location-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            color: #1a1a1a;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .location-address {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: #555555;
+            text-transform: uppercase;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .rings-img {
+            width: 65px;
+            height: auto;
+            margin: 10px 0 15px 0;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .action-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background-color: #a36d41;
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(163, 109, 65, 0.25);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid #a36d41;
+        }
+
+        .action-btn:hover {
+            background-color: #875731;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.secondary {
+            background-color: #5c5346;
+            border-color: #5c5346;
+            box-shadow: 0 4px 10px rgba(92, 83, 70, 0.25);
+        }
+
+        .action-btn.secondary:hover {
+            background-color: #453e34;
+        }
+
+        /* --- SECCIÓN 4: CRONOGRAMA DE LA BODA (FONDO2.PNG) --- */
+        .section-timeline {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            background: url('Tarjeta\ botánica\ minimalista\ en\ marfil.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .timeline-header-top {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .timeline-header-cursive {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4.2rem;
+            color: #a36d41;
+            margin: -15px 0 10px 0;
+            text-align: center;
+        }
+
+        .timeline-container {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            bottom: 25px;
+            left: 32px;
+            width: 1px;
+            background-color: #d4b896;
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .timeline-icon-wrapper {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            border: 1px solid #d4b896;
+            background-color: #fcf9f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .timeline-icon-wrapper img {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+        }
+
+        .timeline-content {
+            margin-left: 20px;
+            text-align: left;
+        }
+
+        .timeline-time {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #a36d41;
+            text-transform: uppercase;
+        }
+
+        .timeline-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            color: #2b2b2b;
+            text-transform: uppercase;
+            margin-top: 3px;
+        }
+
+        /* --- SECCIÓN 5: LOS DETALLES (FONDO.PNG) --- */
+        .section-info-details {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            background: url('Tarjeta\ botánica\ minimalista\ en\ marfil.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .details-cursive {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3rem;
+            color: #a36d41;
+            line-height: 1;
+        }
+
+        .details-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 5px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            margin-top: -5px;
+        }
+
+        .venue-image-box {
+            width: 100%;
+            max-width: 340px;
+            height: 180px;
+            margin: 20px 0 25px 0;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border: 1px solid #d4b896;
+        }
+
+        .venue-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-block {
+            margin-bottom: 25px;
+        }
+
+        .detail-block-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 3px;
+            color: #2b2b2b;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .detail-block-text {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: #555555;
+            text-transform: uppercase;
+            line-height: 1.5;
+        }
+
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            margin: 15px 0;
+        }
+
+        .color-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            border: 2px solid #ffffff;
+        }
+
+        .c-beige { background-color: #e6dfd5; }
+        .c-terracotta { background-color: #a35530; }
+        .c-olive { background-color: #61654b; }
+
+        .dress-code-style {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: #333333;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* --- GRÁFICOS E ÍCONOS DECORATIVOS --- */
+        .interactive-icons-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 25px 0 15px 0;
+        }
+
+        .icon-circle-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .icon-circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-color: #fcf9f5;
+            border: 1px solid #d4b896;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            margin-bottom: 8px;
+        }
+
+        .icon-circle img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .extra-btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        /* --- SECCIÓN 6: RSVP (FONDO.PNG) --- */
+        .section-rsvp {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            background: url('Tarjeta\ botánica\ minimalista\ en\ marfil.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .rsvp-kindly {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 6px;
+            color: #333333;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .rsvp-big-title {
+            font-family: 'Cinzel', serif;
+            font-size: 5.5rem;
+            font-weight: 600;
+            color: #a36d41;
+            letter-spacing: 6px;
+            line-height: 0.9;
+            margin: 10px 0 25px 0;
+        }
+
+        .rsvp-deadline {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: #2b2b2b;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+        }
+
+        /* BOTÓN ELEGANTE DE CONFIRMACIÓN (SIN VERDE ESTRIDENTE) */
+        .btn-elegant-rsvp {
+            display: inline-block;
+            width: 100%;
+            max-width: 290px;
+            padding: 14px 20px;
+            background-color: #a36d41;
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            border: 1px solid #875731;
+            box-shadow: 0 4px 15px rgba(163, 109, 65, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-elegant-rsvp:hover {
+            background-color: #875731;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(135, 87, 49, 0.4);
+        }
+
+        /* --- SECCIÓN 7: GALERÍA DE FOTOS / CARRUSEL (FONDO2.PNG) --- */
+        .section-gallery {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            background: url('Tarjeta\ botánica\ minimalista\ en\ marfil.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .gallery-cursive {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3.5rem;
+            color: #a36d41;
+            line-height: 1;
+        }
+
+        .gallery-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: 5px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            margin-top: -10px;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            height: 420px;
+            margin: 25px auto 15px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 1px solid #d4b896;
+        }
+
+        .carousel-slide {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.75);
+            border: 1px solid #d4b896;
+            color: #a36d41;
+            font-size: 1.4rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            user-select: none;
+            transition: background 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .carousel-btn.prev { left: 10px; }
+        .carousel-btn.next { right: 10px; }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .dot {
+            width: 100%;
+            max-width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #d4b896;
+            opacity: 0.5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            opacity: 1;
+            background-color: #a36d41;
+            transform: scale(1.2);
+        }
+
+        /* --- BOTÓN FLOTANTE DE MÚSICA --- */
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #d4b896;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            z-index: 9000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.3s ease;
+        }
+
+        #music-control.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #music-control:hover {
+            transform: scale(1.1);
+        }
+
+        #music-control span {
+            font-size: 1.1rem;
+            color: #a36d41;
+            line-height: 1;
+            user-select: none;
+        }
+    
+/* --- SECCIÓN 7: REGALOS --- */
+.section-gifts {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    background: url('Tarjeta botánica minimalista en marfil.png')
+        no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.gifts-cursive {
+    font-family: 'Alex Brush', cursive;
+    font-size: 3.5rem;
+    color: #a36d41;
+    line-height: 1;
+}
+
+.gifts-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 500;
+    letter-spacing: 5px;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    margin-top: -5px;
+}
+
+.gifts-message {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #555555;
+    line-height: 1.9;
+    margin: 15px 0 25px;
+    max-width: 330px;
+}
+
+.gift-card {
+    width: 100%;
+    max-width: 330px;
+    padding: 25px 20px;
+    margin: 10px 0;
+    background-color: rgba(252, 249, 245, 0.88);
+    border: 1px solid #d4b896;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.gift-icon {
+    font-size: 2rem;
+    color: #a36d41;
+    margin-bottom: 10px;
+}
+
+.gift-card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #a36d41;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.gift-card-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    color: #555555;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+
+.gift-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #333333;
+    text-transform: uppercase;
+}
+
+.gift-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    color: #555555;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+}
+
+.gift-note {
+    font-family: 'Alex Brush', cursive;
+    font-size: 1.8rem;
+    color: #a36d41;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- REPRODUCTOR DE AUDIO -->
+    <audio id="bg-music" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- SOBRE DE ENTRADA -->
+    <div id="envelope-screen" onclick="openEnvelope()">
+        <div class="tap-hint">Abrir</div>
+    </div>
+
+    <!-- BOTÓN FLOTANTE DE CONTROL DE MÚSICA -->
+    <div id="music-control" onclick="toggleMusic()">
+        <span id="music-icon">♪</span>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div id="main-content">
+
+        <!-- SECCIÓN 1: PORTADA DE LA INVITACIÓN -->
+        <section class="section-cover">
+            <div class="text-top">ESTÁS</div>
+            <div class="text-middle">Cordialmente</div>
+            <div class="text-bottom">INVITADO</div>
+
+            <div class="divider-container">
+                <div class="divider-line"></div>
+                <div class="heart-icon">♥</div>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="footer-text">
+                A CELEBRAR<br>
+                NUESTRA BODA
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: FOTO DE LA PAREJA Y NOMBRES -->
+        <section class="section-couple">
+            <div class="couple-overlay">
+                <div class="name-first">ANA</div>
+                <div class="and-text">y</div>
+                <div class="name-second">ROBERTO</div>
+                
+                <div class="heart-white">♥</div>
+                
+                <div class="together-text">juntos por siempre</div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: FECHA, HORA, ANILLOS Y BOTONES -->
+        <section class="section-details">
+            <div class="join-us">
+                ACOMPÁÑANOS A COMENZAR NUESTRO
+            </div>
+            
+            <div class="forever-text">Para Siempre</div>
+
+            <div class="small-divider"></div>
+
+         
+            <div class="month-name">AGOSTO</div>
+
+            <div class="date-container">
+                <div class="time-text">SÁBADO</div>
+                <div class="day-number">30</div>
+                <div class="time-text">A LAS 4:30 PM</div>
+            </div>
+
+            <div class="year-text">2025</div>
+
+            <div class="location-title">La Casona, Puembo</div>
+            <div class="location-address">
+                Quito - Ecuador<br>
+           
+            </div>
+
+            <img src="ceremonia.png" alt="Anillos de boda" class="rings-img">
+
+            <div class="btn-group">
+                <a href="https://maps.google.com" target="_blank" class="action-btn">Ubicación Ceremonia</a>
+                <a href="https://maps.google.com" target="_blank" class="action-btn secondary">Ubicación Recepción</a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: CRONOGRAMA DE LA BODA (FONDO2.PNG) -->
+        <section class="section-timeline">
+            <div class="timeline-header-top">ITINERARIO</div>
+            <div class="timeline-header-cursive">de la Boda</div>
+
+            <div class="divider-container" style="margin: 10px 0 20px 0;">
+                <div class="divider-line"></div>
+                <div class="heart-icon">♥</div>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-icon-wrapper">
+                        <img src="recep.png" alt="Llegada">
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">4:30 PM</div>
+                        <div class="timeline-title">LLEGADA DE INVITADOS</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon-wrapper">
+                        <img src="nov.png" alt="Ceremonia">
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">5:00 PM</div>
+                        <div class="timeline-title">CEREMONIA</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon-wrapper">
+                        <img src="cenas.png" alt="Cena">
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">6:00 PM</div>
+                        <div class="timeline-title">CENA</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon-wrapper">
+                        <img src="imageso.png" alt="Celebración">
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">7:30 PM</div>
+                        <div class="timeline-title">CELEBRACIÓN</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon-wrapper">
+                        <img src="fin.png" alt="Despedida">
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">10:00 PM</div>
+                        <div class="timeline-title">DESPEDIDA</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: LOS DETALLES Y CÓDIGO DE VESTIMENTA (FONDO.PNG) -->
+        <section class="section-info-details">
+            <div class="details-cursive">Los</div>
+            <div class="details-title">DETALLES</div>
+
+            <div class="divider-container" style="margin: 10px 0 15px 0;">
+                <div class="divider-line"></div>
+                <div class="heart-icon">♥</div>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="venue-image-box">
+                <img src="480654378_964692382428397_799332327181269084_n.jpg" alt="Lugar del evento">
+            </div>
+
+            <div class="detail-block">
+                <div class="detail-block-title">LUGAR</div>
+                <div class="detail-block-text">
+                    La Casona, Puembo<br>
+                    Quito - Ecuador<br>
+                </div>
+            </div>
+
+            <div class="small-divider" style="width: 50%; margin: 10px auto 20px auto;"></div>
+
+            <div class="detail-block" style="margin-bottom: 10px;">
+                <div class="detail-block-title">CÓDIGO DE VESTIMENTA</div>
+                
+                <div class="color-palette">
+                    <div class="color-circle c-beige" title="Beige / Champán"></div>
+                    <div class="color-circle c-terracotta" title="Terracota"></div>
+                    <div class="color-circle c-olive" title="Verde Oliva"></div>
+                </div>
+
+                <div class="dress-code-style">SEMI FORMAL</div>
+            </div>
+
+            <!-- GRÁFICOS / ÍCONOS DECORATIVOS PARA LAS ACCIONES -->
+            <div class="interactive-icons-wrapper">
+                <div class="icon-circle-item">
+                    <div class="icon-circle">
+                        <img src="fotos.png" alt="Fotos" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23a36d41\'><path d=\'M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm9-4h-3.17l-1.86-2H8.03L6.17 5H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z\'/></svg>'">
+                    </div>
+                </div>
+                <div class="icon-circle-item">
+                    <div class="icon-circle">
+                        <img src="musica.png" alt="Música" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23a36d41\'><path d=\'M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z\'/></svg>'">
+                    </div>
+                </div>
+            </div>
+
+            <div class="extra-btn-group">
+                <a href="https://drive.google.com" target="_blank" class="action-btn">Subir Fotos</a>
+                <a href="https://spotify.com" target="_blank" class="action-btn secondary">Sugerir Música</a>
+            </div>
+        </section>
+
+<!-- SECCIÓN: REGALOS -->
+<section class="section-gifts">
+
+    <div class="gifts-cursive">Un detalle</div>
+    <div class="gifts-title">REGALOS</div>
+
+    <div class="divider-container"
+         style="margin: 15px 0 10px 0;">
+        <div class="divider-line"></div>
+        <div class="heart-icon">♥</div>
+        <div class="divider-line"></div>
+    </div>
+
+    <div class="gifts-message">
+        Lo más importante para nosotros es compartir
+        este día tan especial contigo. Si deseas
+        hacernos un regalo, estas son algunas opciones
+        que hemos preparado con cariño.
+    </div>
+
+    <!-- OPCIÓN 1: LLUVIA DE SOBRES -->
+    <div class="gift-card">
+        <div class="gift-icon">♡</div>
+
+        <div class="gift-card-title">
+            Lluvia de sobres
+        </div>
+
+        <div class="gift-card-text">
+            Tu presencia es nuestro mejor regalo.
+            Si deseas obsequiarnos algo, puedes
+            hacerlo mediante un sobre el día de
+            nuestra boda.
+        </div>
+    </div>
+
+    <!-- OPCIÓN 2: TRANSFERENCIA BANCARIA -->
+    <div class="gift-card">
+        <div class="gift-icon">♧</div>
+
+        <div class="gift-card-title">
+            Transferencia bancaria
+        </div>
+
+        <div class="gift-card-text">
+
+            <div class="gift-label">Banco</div>
+            <div class="gift-value">
+                NOMBRE DEL BANCO
+            </div>
+
+            <div class="gift-label">Titular de la cuenta</div>
+            <div class="gift-value">
+                NOMBRE COMPLETO DEL TITULAR
+            </div>
+
+            <div class="gift-label">Cédula</div>
+            <div class="gift-value">
+                NÚMERO DE CÉDULA
+            </div>
+
+            <div class="gift-label">Tipo de cuenta</div>
+            <div class="gift-value">
+                AHORROS / CORRIENTE
+            </div>
+
+            <div class="gift-label">Número de cuenta</div>
+            <div class="gift-value">
+                NÚMERO DE CUENTA
+            </div>
+
+        </div>
+    </div>
+
+    <div class="gift-note">
+        Gracias por ser parte de nuestra historia
+    </div>
+
+    <div class="heart-icon"
+         style="margin-top: 15px;">
+        ♥
+    </div>
+
+</section>
+<!-- FIN SECCIÓN REGALOS -->
+```
+        <!-- SECCIÓN 6: RSVP (CONFIRMACIÓN DE ASISTENCIA ELEGANTE) -->
+        <section class="section-rsvp">
+            <div class="rsvp-kindly">POR FAVOR</div>
+            
+            <div class="rsvp-big-title">
+                RS<br>VP
+            </div>
+
+            <div class="rsvp-deadline">ANTES DEL 15 DE AGOSTO DE 2025</div>
+
+            <div class="heart-icon" style="margin-bottom: 25px;">♥</div>
+
+            <!-- BOTÓN ELEGANTE A WHATSSAP -->
+            <a href="https://wa.me/593900000000?text=¡Hola!%20Deseo%20confirmar%20mi%20asistencia%20a%20la%20boda." target="_blank" class="btn-elegant-rsvp">
+                Confirmar Asistencia
+            </a>
+        </section>
+
+        <!-- SECCIÓN 7: GALERÍA DE FOTOS / CARRUSEL (FONDO2.PNG) -->
+        <section class="section-gallery">
+            <div class="gallery-cursive">nuestra</div>
+            <div class="gallery-title">GALERÍA</div>
+
+            <div class="divider-container" style="margin: 10px 0 15px 0;">
+                <div class="divider-line"></div>
+                <div class="heart-icon">♥</div>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-btn prev" onclick="moveSlide(-1)">‹</div>
+                <div class="carousel-btn next" onclick="moveSlide(1)">›</div>
+                
+                <div class="carousel-slide" id="carouselSlide">
+                    <img src="canva-pareja-romántica-abrazándose-en-un-paisaje-desértico-MAGzvajd-Mo.jpg" alt="Foto 1">
+                    <img src="images.jpg" alt="Foto 2">
+                  
+                  
+                </div>
+            </div>
+
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- SCRIPTS DE INTERACCIÓN Y CARRUSEL -->
+    <script>
+        const audio = document.getElementById('bg-music');
+        const musicControl = document.getElementById('music-control');
+        const musicIcon = document.getElementById('music-icon');
+        let isPlaying = false;
+
+        function openEnvelope() {
+            document.getElementById('envelope-screen').classList.add('hidden');
+            document.getElementById('main-content').classList.add('visible');
+            musicControl.classList.add('visible');
+
+            audio.play().then(() => {
+                isPlaying = true;
+                musicIcon.textContent = '❚❚';
+            }).catch(err => {
+                console.log("Audio no reproducido automáticamente:", err);
+            });
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                musicIcon.textContent = '♪';
+            } else {
+                audio.play();
+                isPlaying = true;
+                musicIcon.textContent = '❚❚';
+            }
+        }
+
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('#carouselSlide img');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        function updateCarousel() {
+            const slideContainer = document.getElementById('carouselSlide');
+            slideContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function moveSlide(direction) {
+            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function currentSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        setInterval(() => {
+            if (document.getElementById('main-content').classList.contains('visible')) {
+                moveSlide(1);
+            }
+        }, 4000);
+    </script>
+
+</body>
+</html>
